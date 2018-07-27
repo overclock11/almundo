@@ -23,7 +23,6 @@ class RestController {
                 res.status(500).json(err);
             })
         });
-
         router.get('/stars/:stars', (req, res) => {
             this.hotelsController.searchByStars(req.params.stars).then((result)=>{
                 res.status(200).json(result);
@@ -31,6 +30,9 @@ class RestController {
                 res.status(500).json(err);
             })
         });
+        console.log("Publicando recursos REST en /hotel");
+        console.log("/name/:name");
+        console.log("/stars/:stars");
         return router;
     }
 }
