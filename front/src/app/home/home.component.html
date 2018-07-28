@@ -53,54 +53,68 @@
             </mat-card-content>
           </mat-card>
         </div>
+
         <div class="col-md-9">
-          <div class="row">
-            <ng-container *ngFor="let hotel of hotels">
-              <div class="col-md-8">
-                <div class="row">
-                  <div class="col-md-6">
-                    <img src="../../assets/images/2a5bb415_b.jpg" alt="Imagen del hotel" class="img-responsive" height="200">
+
+          <!--card--><!--card--><!--card-->
+          <div class="col-md-12 no-padding lib-item" data-category="ui" *ngFor="let hotel of hotels; let first = first">
+            <div class="lib-panel">
+              <div class="row box-shadow">
+                <div class="col-md-3">
+                  <img class="lib-img" src="../../assets/images/2a5bb415_b.jpg">
+                </div>
+
+                <!--inicia div de detalles--><!--inicia div de detalles--><!--inicia div de detalles-->
+                <!--inicia div de detalles--><!--inicia div de detalles--><!--inicia div de detalles-->
+                <div class="col-md-6">
+                  <div class="lib-row lib-header">
+                    {{hotel.name}}
+                    <div class="lib-header-seperator"></div>
                   </div>
-                  <div class="col-md-6">
-                    <h4 class="color-blue">{{hotel.name}}, {{hotel.stars}}</h4>
-                    <ng-container [ngSwitch]="hotel.stars">
-                        <ng-container *ngSwitchCase="1">
-                          <img src="../../assets/images/estrellaBrillante.png" alt="lupa" height="20">
-                        </ng-container>
-                      <ng-container *ngSwitchCase="2">
+                  <div class="lib-row lib-desc">
+                    <ng-container [ngSwitch]="hotel.stars" >
+                      <div *ngSwitchCase="1" class="margin-stars">
+                        <img src="../../assets/images/estrellaBrillante.png" alt="lupa" height="20">
+                      </div>
+                      <div *ngSwitchCase="2" class="margin-stars">
                         <img src="../../assets/images/estrellaBrillante.png" alt="lupa" height="20">
                         <img src="../../assets/images/estrellaBrillante.png" alt="lupa" height="20">
-                      </ng-container>
-                      <ng-container *ngSwitchCase="3">
-                        <img src="../../assets/images/estrellaBrillante.png" alt="lupa" height="20">
-                        <img src="../../assets/images/estrellaBrillante.png" alt="lupa" height="20">
-                        <img src="../../assets/images/estrellaBrillante.png" alt="lupa" height="20">
-                      </ng-container>
-                      <ng-container *ngSwitchCase="4">
+                      </div>
+                      <div *ngSwitchCase="3" class="margin-stars">
                         <img src="../../assets/images/estrellaBrillante.png" alt="lupa" height="20">
                         <img src="../../assets/images/estrellaBrillante.png" alt="lupa" height="20">
                         <img src="../../assets/images/estrellaBrillante.png" alt="lupa" height="20">
-                        <img src="../../assets/images/estrellaBrillante.png" alt="lupa" height="20">
-                      </ng-container>
-                      <ng-container *ngSwitchCase="5">
+                      </div>
+                      <div *ngSwitchCase="4" class="margin-stars">
                         <img src="../../assets/images/estrellaBrillante.png" alt="lupa" height="20">
                         <img src="../../assets/images/estrellaBrillante.png" alt="lupa" height="20">
                         <img src="../../assets/images/estrellaBrillante.png" alt="lupa" height="20">
                         <img src="../../assets/images/estrellaBrillante.png" alt="lupa" height="20">
+                      </div>
+                      <div *ngSwitchCase="5" class="margin-stars">
                         <img src="../../assets/images/estrellaBrillante.png" alt="lupa" height="20">
-                      </ng-container>
+                        <img src="../../assets/images/estrellaBrillante.png" alt="lupa" height="20">
+                        <img src="../../assets/images/estrellaBrillante.png" alt="lupa" height="20">
+                        <img src="../../assets/images/estrellaBrillante.png" alt="lupa" height="20">
+                        <img src="../../assets/images/estrellaBrillante.png" alt="lupa" height="20">
+                      </div>
                     </ng-container>
                   </div>
                 </div>
+                <!--inicia div de precios--><!--inicia div de precios--><!--inicia div de precios-->
+                <!--inicia div de precios--><!--inicia div de precios--><!--inicia div de precios-->
+                <div class="col-md-3 price-section">
+                  <strong>Precio por noche por habitación</strong>
+                  <br>
+                  <span class="text-price">ARS</span>
+                  <span class="price">{{hotel.price}}</span>
+                  <br>
+                  <button mat-raised-button color="primary" class="hotel-button">Ver hotel</button>
+                </div>
+
+
               </div>
-              <div class="col-md-4">
-                <p>Precio por noche por habitación</p>
-                <span class="text-price">ARS</span>
-                <span class="price">
-                  {{hotel.price}}
-                </span>
-              </div>
-            </ng-container>
+            </div>
           </div>
         </div>
       </div>

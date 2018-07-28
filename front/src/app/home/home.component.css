@@ -12,8 +12,7 @@
   margin-left: 2%;
 }
 .margin-stars{
-  margin-top: 2%;
-  margin-bottom: 2%;
+  margin-bottom: 10%;
 }
 
 .price{
@@ -25,3 +24,79 @@
   color: orange;
   font-size: 28px;
 }
+.padding-top-center{
+  padding-top: 2%;
+  text-align: center;
+}
+@media (max-width: 700px) {
+  .price-section{
+    padding-top: 3%;
+    border-top: dashed 1px;
+    border-left: 0px !important;
+    text-align: center;
+    padding-bottom: 10%;
+  }
+  .hotel-button{
+    width: 100%
+  }
+}
+
+@media (max-width: 1900px) {
+  .price-section{
+    padding-top: 3%;
+    border-left: dashed 1px;
+    text-align: center;
+  }
+}
+
+
+/*card horizontal para los hoteles*/
+.lib-panel {
+  margin-bottom: 20Px;
+}
+.lib-panel .row,
+.lib-panel .col-md-6 {
+  padding: 0;
+  background-color: #FFFFFF;
+}
+
+
+.lib-panel .lib-row {
+  padding: 0 20px 0 20px;
+}
+
+.lib-panel .lib-row.lib-header {
+  background-color: #FFFFFF;
+  font-size: 20px;
+  padding: 10px 20px 0 20px;
+}
+
+.lib-panel .lib-row.lib-header .lib-header-seperator {
+  height: 2px;
+  width: 26px;
+  background-color: #d9d9d9;
+  margin: 7px 0 7px 0;
+}
+
+.lib-panel .lib-row.lib-desc {
+  position: relative;
+  height: 100%;
+  display: block;
+  font-size: 13px;
+}
+.lib-panel .lib-row.lib-desc a{
+  position: absolute;
+  width: 100%;
+  bottom: 10px;
+  left: 20px;
+}
+
+.row-margin-bottom {
+  margin-bottom: 20px;
+}
+
+.box-shadow {
+  -webkit-box-shadow: 0 0 10px 0 rgba(0,0,0,.10);
+  box-shadow: 0 0 10px 0 rgba(0,0,0,.10);
+}
+
