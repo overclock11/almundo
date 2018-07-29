@@ -1,8 +1,9 @@
 "use strict";
 const json = require('../resources/data');
+const MongoDbRepository = require('../repository/MongodbRepository');
 class HotelsService {
     constructor(){
-
+        this._mongoRepository = new MongoDbRepository();
     }
 
     /**
@@ -11,7 +12,24 @@ class HotelsService {
      */
     getAll(){
         return new Promise((resolve,reject)=>{
-            resolve(json);
+            this._mongoRepository.cleanCollection('almundoCollection').then(()=>{
+                this._mongoRepository.insertValues('almundoCollection',json).then(()=>{
+                    this._mongoRepository.findValues('almundoCollection',{}).then((result)=>{
+                        try{
+                            resolve(result);
+                        } catch (e) {
+                            console.log(e);
+                            reject(e);
+                        }
+                    });
+                }, (err)=>{
+                    console.log(err);
+                    reject(err);
+                });
+            }, (err)=>{
+                console.log(err);
+                reject(err);
+            });
         });
     }
 
@@ -21,15 +39,21 @@ class HotelsService {
      */
     searchByName(name){
         return new Promise((resolve,reject)=>{
-            try{
-                let result = json.filter((hotel)=>{
-                    return hotel.name === name;
-                });
-                resolve(result);
-            } catch (e) {
-                console.log(e);
-                reject(e);
+            let query={};
+            if(name===''){
+                query = {}
             }
+            else {
+                query = {'name':{'$regex' :name, '$options' : 'i'}};
+            }
+            this._mongoRepository.findValues('almundoCollection',query).then((result)=>{
+                try{
+                    resolve(result);
+                } catch (e) {
+                    console.log(e);
+                    reject(e);
+                }
+            });
         })
     }
 
@@ -40,15 +64,14 @@ class HotelsService {
      */
     searchByStars(stars){
         return new Promise((resolve,reject)=>{
-            try{
-                let result = json.filter((hotel)=>{
-                    return hotel.stars === parseInt(stars);
-                });
-                resolve(result);
-            } catch (e) {
-                console.log(e);
-                reject(e);
-            }
+            this._mongoRepository.findValues('almundoCollection',{'stars':parseInt(stars)}).then((result)=>{
+                try{
+                    resolve(result);
+                } catch (e) {
+                    console.log(e);
+                    reject(e);
+                }
+            });
         })
     }
 }

@@ -22,6 +22,11 @@ app.use(function(req, res, next) {
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     next();
 });
+// rewrite virtual urls to angular app to enable refreshing of internal pages
+app.get('/almundo', function (req, res, next) {
+    res.sendFile(path.resolve('public/almundo/index.html'));
+});
+
 //importar modulos
 const hotels = new Hotels();
 
