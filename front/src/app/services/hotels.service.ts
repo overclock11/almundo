@@ -20,4 +20,12 @@ export class HotelsService {
     return this.http.get(environment.api+"hotel");
   }
 
+  getByName(name: string): Observable<any>{
+    return this.http.get(environment.api+"name/"+name);
+  }
+
+  getByStars(stars: number): Observable<any>{
+    return this.http.get(environment.api+"stars/"+stars);
+  }
+
 }

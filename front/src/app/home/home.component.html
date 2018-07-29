@@ -1,6 +1,7 @@
 <div class="container-fluid">
   <div class="row padding-top">
     <div class="col-md-12">
+      <mat-progress-bar mode="indeterminate" [hidden]="progressBar"></mat-progress-bar>
       <div class="row">
         <div class="col-md-3">
           <mat-card class="reduce-padding">
@@ -8,47 +9,52 @@
           </mat-card>
           <mat-card class="reduce-padding">
             <strong class="color-blue">
-              <img src="../../assets/images/search.svg" alt="lupa" height="20">
+              <img src="assets/images/search.svg" alt="lupa" height="20">
               Nombre del hotel
+              <i class="fas fa-caret-up" style="float: right"  [hidden]="showNameField" (click)="showNameField = !showNameField"></i>
+              <i class="fas fa-caret-down" style="float: right"  [hidden]="!showNameField" (click)="showNameField = !showNameField"></i>
+              <br>
             </strong>
-            <mat-form-field class="example-full-width">
-              <input matInput placeholder="Ingrese el nombre del hotel" value="">
+            <mat-form-field class="example-full-width" [hidden]="showNameField">
+              <input matInput placeholder="Ingrese el nombre del hotel" [(ngModel)]="hotelName">
             </mat-form-field>
-            <button mat-raised-button color="primary" class="margin-left">Aceptar</button>
+            <button mat-raised-button color="primary" class="margin-left" [hidden]="showNameField" (click)="searchByName()">Aceptar</button>
           </mat-card>
           <mat-card class="reduce-padding">
             <strong class="color-blue margin-stars">
-              <img src="../../assets/images/star.svg" alt="lupa" height="20">
+              <img src="assets/images/star.svg" alt="lupa" height="20">
               Estrellas
+              <i class="fas fa-caret-up" style="float: right"  [hidden]="showStarsField" (click)="showStarsField = !showStarsField"></i>
+              <i class="fas fa-caret-down" style="float: right"  [hidden]="!showStarsField" (click)="showStarsField = !showStarsField"></i>
             </strong>
-            <mat-card-content>
+            <mat-card-content [hidden]="showStarsField">
               <br>
-              <mat-checkbox class="margin-stars">Todas las estrellas</mat-checkbox>
+              <mat-checkbox class="margin-stars" (click)="loadHotels(6)">Todas las estrellas</mat-checkbox>
               <br>
-              <mat-checkbox class="margin-stars">
-                <img src="../../assets/images/estrellaBrillante.png" alt="lupa" height="20">
-                <img src="../../assets/images/estrellaBrillante.png" alt="lupa" height="20">
-                <img src="../../assets/images/estrellaBrillante.png" alt="lupa" height="20">
-                <img src="../../assets/images/estrellaBrillante.png" alt="lupa" height="20">
-                <img src="../../assets/images/estrellaBrillante.png" alt="lupa" height="20">
+              <mat-checkbox class="margin-stars" (click)="getByStars(5)" >
+                <img src="assets/images/estrellaBrillante.png" alt="lupa" height="20">
+                <img src="assets/images/estrellaBrillante.png" alt="lupa" height="20">
+                <img src="assets/images/estrellaBrillante.png" alt="lupa" height="20">
+                <img src="assets/images/estrellaBrillante.png" alt="lupa" height="20">
+                <img src="assets/images/estrellaBrillante.png" alt="lupa" height="20">
               </mat-checkbox><br>
-              <mat-checkbox class="margin-stars">
-                <img src="../../assets/images/estrellaBrillante.png" alt="lupa" height="20">
-                <img src="../../assets/images/estrellaBrillante.png" alt="lupa" height="20">
-                <img src="../../assets/images/estrellaBrillante.png" alt="lupa" height="20">
-                <img src="../../assets/images/estrellaBrillante.png" alt="lupa" height="20">
+              <mat-checkbox class="margin-stars" (click)="getByStars(4)">
+                <img src="assets/images/estrellaBrillante.png" alt="lupa" height="20">
+                <img src="assets/images/estrellaBrillante.png" alt="lupa" height="20">
+                <img src="assets/images/estrellaBrillante.png" alt="lupa" height="20">
+                <img src="assets/images/estrellaBrillante.png" alt="lupa" height="20">
               </mat-checkbox><br>
-              <mat-checkbox class="margin-stars">
-                <img src="../../assets/images/estrellaBrillante.png" alt="lupa" height="20">
-                <img src="../../assets/images/estrellaBrillante.png" alt="lupa" height="20">
-                <img src="../../assets/images/estrellaBrillante.png" alt="lupa" height="20">
+              <mat-checkbox class="margin-stars" (click)="getByStars(3)">
+                <img src="assets/images/estrellaBrillante.png" alt="lupa" height="20">
+                <img src="assets/images/estrellaBrillante.png" alt="lupa" height="20">
+                <img src="assets/images/estrellaBrillante.png" alt="lupa" height="20">
               </mat-checkbox><br>
-              <mat-checkbox class="margin-stars">
-                <img src="../../assets/images/estrellaBrillante.png" alt="lupa" height="20">
-                <img src="../../assets/images/estrellaBrillante.png" alt="lupa" height="20">
+              <mat-checkbox class="margin-stars" (click)="getByStars(2)">
+                <img src="assets/images/estrellaBrillante.png" alt="lupa" height="20">
+                <img src="assets/images/estrellaBrillante.png" alt="lupa" height="20">
               </mat-checkbox><br>
-              <mat-checkbox class="margin-stars">
-                <img src="../../assets/images/estrellaBrillante.png" alt="lupa" height="20">
+              <mat-checkbox class="margin-stars" (click)="getByStars(1)">
+                <img src="assets/images/estrellaBrillante.png" alt="lupa" height="20">
               </mat-checkbox><br>
             </mat-card-content>
           </mat-card>
@@ -61,7 +67,7 @@
             <div class="lib-panel">
               <div class="row box-shadow">
                 <div class="col-md-3">
-                  <img class="lib-img" src="../../assets/images/2a5bb415_b.jpg">
+                  <img class="lib-img" src="{{api}}images/{{hotel.image}}">
                 </div>
 
                 <!--inicia div de detalles--><!--inicia div de detalles--><!--inicia div de detalles-->
@@ -74,31 +80,34 @@
                   <div class="lib-row lib-desc">
                     <ng-container [ngSwitch]="hotel.stars" >
                       <div *ngSwitchCase="1" class="margin-stars">
-                        <img src="../../assets/images/estrellaBrillante.png" alt="lupa" height="20">
+                        <img src="assets/images/estrellaBrillante.png" alt="lupa" height="20">
                       </div>
                       <div *ngSwitchCase="2" class="margin-stars">
-                        <img src="../../assets/images/estrellaBrillante.png" alt="lupa" height="20">
-                        <img src="../../assets/images/estrellaBrillante.png" alt="lupa" height="20">
+                        <img src="assets/images/estrellaBrillante.png" alt="lupa" height="20">
+                        <img src="assets/images/estrellaBrillante.png" alt="lupa" height="20">
                       </div>
                       <div *ngSwitchCase="3" class="margin-stars">
-                        <img src="../../assets/images/estrellaBrillante.png" alt="lupa" height="20">
-                        <img src="../../assets/images/estrellaBrillante.png" alt="lupa" height="20">
-                        <img src="../../assets/images/estrellaBrillante.png" alt="lupa" height="20">
+                        <img src="assets/images/estrellaBrillante.png" alt="lupa" height="20">
+                        <img src="assets/images/estrellaBrillante.png" alt="lupa" height="20">
+                        <img src="assets/images/estrellaBrillante.png" alt="lupa" height="20">
                       </div>
                       <div *ngSwitchCase="4" class="margin-stars">
-                        <img src="../../assets/images/estrellaBrillante.png" alt="lupa" height="20">
-                        <img src="../../assets/images/estrellaBrillante.png" alt="lupa" height="20">
-                        <img src="../../assets/images/estrellaBrillante.png" alt="lupa" height="20">
-                        <img src="../../assets/images/estrellaBrillante.png" alt="lupa" height="20">
+                        <img src="assets/images/estrellaBrillante.png" alt="lupa" height="20">
+                        <img src="assets/images/estrellaBrillante.png" alt="lupa" height="20">
+                        <img src="assets/images/estrellaBrillante.png" alt="lupa" height="20">
+                        <img src="assets/images/estrellaBrillante.png" alt="lupa" height="20">
                       </div>
                       <div *ngSwitchCase="5" class="margin-stars">
-                        <img src="../../assets/images/estrellaBrillante.png" alt="lupa" height="20">
-                        <img src="../../assets/images/estrellaBrillante.png" alt="lupa" height="20">
-                        <img src="../../assets/images/estrellaBrillante.png" alt="lupa" height="20">
-                        <img src="../../assets/images/estrellaBrillante.png" alt="lupa" height="20">
-                        <img src="../../assets/images/estrellaBrillante.png" alt="lupa" height="20">
+                        <img src="assets/images/estrellaBrillante.png" alt="lupa" height="20">
+                        <img src="assets/images/estrellaBrillante.png" alt="lupa" height="20">
+                        <img src="assets/images/estrellaBrillante.png" alt="lupa" height="20">
+                        <img src="assets/images/estrellaBrillante.png" alt="lupa" height="20">
+                        <img src="assets/images/estrellaBrillante.png" alt="lupa" height="20">
                       </div>
                     </ng-container>
+                    <ng-container #amenities *ngFor="let icons of hotel.amenities">
+                    <img src="assets/amenities/{{icons}}.svg" alt="{{icons}}" height="20" style="margin-top: -67px;">
+                  </ng-container>
                   </div>
                 </div>
                 <!--inicia div de precios--><!--inicia div de precios--><!--inicia div de precios-->

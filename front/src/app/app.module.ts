@@ -12,6 +12,8 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {HttpClientModule} from '@angular/common/http';
 import {HotelsService} from "./services/hotels.service";
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {MatProgressBarModule} from '@angular/material/progress-bar';
 
 @NgModule({
   declarations: [
@@ -26,7 +28,10 @@ import {HotelsService} from "./services/hotels.service";
     MatInputModule,
     MatButtonModule,
     MatCheckboxModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MatProgressBarModule
   ],
   providers: [HotelsService],
   bootstrap: [AppComponent]
