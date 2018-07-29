@@ -5,12 +5,12 @@ const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const debug = require('debug')('api:server');
 const http = require('http');
-
+const config = require('./app.config');
 //importar modulos
 const Hotels =  require('./modules/hotels/HotelsBoot');
 
 let app = express();
-let port = '3001';
+let port = config.port;
 
 app.use(logger('dev'));
 app.use(express.json());
